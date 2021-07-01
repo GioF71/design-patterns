@@ -2,9 +2,6 @@ package com.gftech.factory.parametrized;
 
 import org.junit.Test;
 
-import com.gftech.factory.parametrized.MobileFactory;
-import com.gftech.factory.parametrized.MobilePhoneType;
-
 public class MobileFactoryTest {
 
 	@Test
