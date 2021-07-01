@@ -1,9 +1,6 @@
-package com.gftech.factory.parametrized;
+package com.gftech.designpatterns.factory.parametrized;
 
 import org.junit.Test;
-
-import com.gftech.designpatterns.factory.parametrized.MobileFactory;
-import com.gftech.designpatterns.factory.parametrized.MobilePhoneType;
 
 public class MobileFactoryTest {
 
@@ -22,8 +19,7 @@ public class MobileFactoryTest {
 		System.out.println(new MobileFactory().create(MobilePhoneType.NOKIA).getName());
 	}
 
-	//@Test(expected = RuntimeException.class)
-	@Test
+	@Test(expected = RuntimeException.class)
 	public void nullPhoneType() {
 		System.out.println(new MobileFactory().create(null).getName());
 	}
