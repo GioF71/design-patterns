@@ -1,4 +1,4 @@
-package com.gftech.factory.parametrized;
+package com.gftech.designpatterns.factory.parametrized;
 
 public class Iphone implements MobilePhone {
 
