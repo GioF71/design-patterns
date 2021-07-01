@@ -1,4 +1,4 @@
-package com.gftech.factory.Parametrized;
+package com.gftech.factory.parametrized;
 
 import java.util.HashMap;
 import java.util.Map;
