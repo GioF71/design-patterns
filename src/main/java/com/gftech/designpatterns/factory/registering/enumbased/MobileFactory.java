@@ -1,4 +1,4 @@
-package com.gftech.designpatterns.factory.parametrized.registering;
+package com.gftech.designpatterns.factory.registering.enumbased;
 
 import java.util.HashMap;
 import java.util.Map;
