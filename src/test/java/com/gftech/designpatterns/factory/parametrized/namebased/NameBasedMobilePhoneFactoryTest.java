@@ -2,7 +2,7 @@ package com.gftech.designpatterns.factory.parametrized.namebased;
 
 import org.junit.Test;
 
-public class NameBasedMobileFactoryTest {
+public class NameBasedMobilePhoneFactoryTest {
 
 	@Test
 	public void apple() {

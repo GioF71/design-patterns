@@ -1,9 +1,15 @@
-package com.gftech.designpatterns.factory.parametrized.enumbased;
+package com.gftech.designpatterns.factory.parametrized.registering;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class EnumBasedMobileFactoryTest {
+public class RegisteringMobilePhoneFactoryTest {
 
+	@BeforeClass 
+	public static void setup() {
+		FactoryInitializer.initialize();
+	}
+	
 	@Test
 	public void apple() {
 		System.out.println(new MobileFactory().create(MobilePhoneType.IPHONE).getName());
