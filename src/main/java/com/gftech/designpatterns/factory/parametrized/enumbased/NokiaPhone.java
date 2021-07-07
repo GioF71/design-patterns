@@ -1,4 +1,4 @@
-package com.gftech.designpatterns.factory.parametrized;
+package com.gftech.designpatterns.factory.parametrized.enumbased;
 
 public class NokiaPhone implements MobilePhone {
 

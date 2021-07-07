@@ -1,4 +1,4 @@
-package com.gftech.designpatterns.factory.parametrized;
+package com.gftech.designpatterns.factory.parametrized.enumbased;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +16,8 @@ public class MobileFactory {
 	}
 	
 	public MobilePhone create(MobilePhoneType mobilePhoneType) {
-		return Optional.of(mobilePhoneTypeMap)
-			.map(x -> x.get(mobilePhoneType))
+		return Optional.of(mobilePhoneType)
+			.map(x -> mobilePhoneTypeMap.get(x))
 			.map(Supplier::get)
 			.orElseThrow(() -> new RuntimeException(String.format("Invalid argument [%s]", mobilePhoneType)));
 	}

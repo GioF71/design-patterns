@@ -1,8 +1,8 @@
-package com.gftech.designpatterns.factory.parametrized;
+package com.gftech.designpatterns.factory.parametrized.enumbased;
 
 import org.junit.Test;
 
-public class MobileFactoryTest {
+public class EnumBasedMobileFactoryTest {
 
 	@Test
 	public void apple() {
