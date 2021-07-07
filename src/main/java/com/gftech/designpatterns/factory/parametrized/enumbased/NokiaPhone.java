@@ -6,5 +6,4 @@ public class NokiaPhone implements MobilePhone {
 	public String getName() {
 		return "Nokia";
 	}
-
 }
