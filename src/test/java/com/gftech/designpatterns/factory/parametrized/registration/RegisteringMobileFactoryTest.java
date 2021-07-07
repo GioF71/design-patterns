@@ -3,11 +3,7 @@ package com.gftech.designpatterns.factory.parametrized.registration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.gftech.designpatterns.factory.parametrized.registration.FactoryInitializer;
-import com.gftech.designpatterns.factory.parametrized.registration.MobileFactory;
-import com.gftech.designpatterns.factory.parametrized.registration.MobilePhoneType;
-
-public class SelfRegisteringMobileFactoryTest {
+public class RegisteringMobileFactoryTest {
 
 	@BeforeClass 
 	public static void setup() {
