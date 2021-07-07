@@ -13,13 +13,11 @@ public class BuilderTest {
 	private static final String ADDRESS = "address";
 	private static final String EMAIL = "a@b.c";
 	private static final String NICKNAME = "nickname";
-
-	@Test
-	public void withoutBuilderAllSet() {
-		Person p = new PersonWithoutBuilder(FIRST_NAME, FAMILY_NAME, ADDRESS, EMAIL, NICKNAME);
-		validateAll(p);
-	}
-
+	
+	
+	// Case 1: I need a Person Object with only mandatory properties.
+	// With Builder and Without Builder is almost the same (If I take a look, it seems there is no real benefit !)
+	
 	@Test
 	public void withoutBuilderMandatoryOnly() {
 		// cool, I have a perfect constructor for that!
@@ -27,6 +25,23 @@ public class BuilderTest {
 		validateMandatory(p);
 	}
 
+	@Test
+	public void withBuilderMandatoryOnly() {
+		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+			.build();
+		validateMandatory(p);
+	}
+	
+	// Case 2: I need a Person Object with all properties set.
+	// Without Builder: there is no problem here, however all parameters are string and you need to respect the order.
+	// With Builder: code is more readable and you are not required to respect the order of the methods of the builder.
+	
+	@Test
+	public void withoutBuilderAllSet() {
+		Person p = new PersonWithoutBuilder(FIRST_NAME, FAMILY_NAME, ADDRESS, EMAIL, NICKNAME);
+		validateAll(p);
+	}
+	
 	@Test
 	public void withBuilderAllSet() {
 		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
@@ -36,14 +51,21 @@ public class BuilderTest {
 			.build();
 		validateAll(p);
 	}
-
+	
 	@Test
-	public void withBuilderMandatoryOnly() {
+	public void withBuilderAllSetDifferentOrder() {
 		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+			.address(ADDRESS)
+			.nickName(NICKNAME)
+			.email(EMAIL)
 			.build();
-		validateMandatory(p);
+		validateAll(p);
 	}
-
+	
+	// Case 3: I need a Person Object with mandatory properties and the email.
+	// Without Builder: I don't have an ad-hoc constructor ! I use the overload constructor with 4 parameters but  
+	// I need to pass "null" as the address (third parameter).
+	
 	@Test
 	public void withoutBuilderMandatoryAndEmail() {
 		// uh-oh!
@@ -62,7 +84,11 @@ public class BuilderTest {
 		validateMandatory(p);
 		validateEmail(p);
 	}
-
+	
+	// Case 4: I need a Person Object with mandatory properties and the nickname.
+	// Without Builder: I don't have an ad-hoc constructor ! I use the overload constructor with 5 parameters but  
+	// I need to pass "null" as the address (third parameter) and "null" as email (fourth parameter). 
+	
 	@Test
 	public void withoutBuilderMandatoryAndNickName() {
 		// uh-oh! even worse!
@@ -81,7 +107,9 @@ public class BuilderTest {
 		validateMandatory(p);
 		validateNickName(p);
 	}
-
+	
+	// Validator methods
+	
 	private void validateMandatory(Person p) {
 		Assert.assertEquals(p.getFirstName(), FIRST_NAME);
 		Assert.assertEquals(p.getFamilyName(), FAMILY_NAME);
