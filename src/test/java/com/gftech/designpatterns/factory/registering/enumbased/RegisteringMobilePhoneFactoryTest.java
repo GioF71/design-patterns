@@ -3,10 +3,6 @@ package com.gftech.designpatterns.factory.registering.enumbased;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.gftech.designpatterns.factory.registering.enumbased.FactoryInitializer;
-import com.gftech.designpatterns.factory.registering.enumbased.MobileFactory;
-import com.gftech.designpatterns.factory.registering.enumbased.MobilePhoneType;
-
 public class RegisteringMobilePhoneFactoryTest {
 
 	@BeforeClass 
