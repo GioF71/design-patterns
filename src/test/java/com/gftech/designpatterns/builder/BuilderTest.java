@@ -29,7 +29,9 @@ public class BuilderTest {
 
 	@Test
 	public void withBuilderAllSet() {
-		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+		Person p = PersonWithBuilder.builder()
+			.firstName(FIRST_NAME)
+			.familyName(FAMILY_NAME)
 			.address(ADDRESS)
 			.email(EMAIL)
 			.nickName(NICKNAME)
@@ -39,7 +41,9 @@ public class BuilderTest {
 
 	@Test
 	public void withBuilderMandatoryOnly() {
-		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+		Person p = PersonWithBuilder.builder()
+			.firstName(FIRST_NAME)
+			.familyName(FAMILY_NAME)
 			.build();
 		validateMandatory(p);
 	}
@@ -56,7 +60,9 @@ public class BuilderTest {
 	@Test
 	public void withBuilderMandatoryAndEmail() {
 		// no problem with the builder here!
-		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+		Person p = PersonWithBuilder.builder()
+			.firstName(FIRST_NAME)
+			.familyName(FAMILY_NAME)
 			.email(EMAIL)
 			.build();
 		validateMandatory(p);
@@ -75,11 +81,21 @@ public class BuilderTest {
 	@Test
 	public void withBuilderMandatoryAndNickName() {
 		// no problem with the builder here!
-		Person p = PersonWithBuilder.builder(FIRST_NAME, FAMILY_NAME)
+		Person p = PersonWithBuilder.builder()
+			.firstName(FIRST_NAME)
+			.familyName(FAMILY_NAME)
 			.nickName(NICKNAME)
 			.build();
 		validateMandatory(p);
 		validateNickName(p);
+	}
+
+	@Test(expected = Exception.class)
+	public void withBuilderMissingMandatoryFamilyName() {
+		// the builder can evaluate whether all the mandatory arguments are set
+		PersonWithBuilder.builder()
+			.firstName(FIRST_NAME)
+			.build();
 	}
 
 	private void validateMandatory(Person p) {

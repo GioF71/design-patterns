@@ -1,5 +1,7 @@
 package com.gftech.designpatterns.builder.withbuilder;
 
+import java.util.function.Function;
+
 import com.gftech.designpatterns.builder.Person;
 
 public class PersonWithBuilder implements Person {
@@ -43,26 +45,43 @@ public class PersonWithBuilder implements Person {
 		return nickName;
 	}
 
-	public static Builder builder(String firstName, String familyName) {
-		return new Builder(firstName, familyName);
+	public static Builder builder() {
+		return new Builder();
 	}
 	
 	public static class Builder {
 		
-		// mandatory, so it's final and it's required on the Builder constructor
-		private final String firstName;
-		// mandatory, so it's final and it's required on the Builder constructor
-		private final String familyName;
+		class BuilderException extends RuntimeException {
+
+			private static final long serialVersionUID = 6142129777742872383L;
+
+			public BuilderException(String message) {
+				super(message);
+			}
+		}
+		
+		// mandatory, so it's verified before actually building "PersonWithBuilder"
+		private String firstName;
+		// mandatory, so it's verified before actually building "PersonWithBuilder"
+		private String familyName;
 		
 		private String address;
 		private String email;
 		private String nickName;
 		
-		private Builder(String firstName, String familyName) {
-			this.firstName = firstName;
-			this.familyName = familyName;
+		private Builder() {
 		}
 		
+		public Builder firstName(String firstName) {
+			this.firstName = firstName;
+			return this;
+		}
+
+		public Builder familyName(String familyName) {
+			this.familyName = familyName;
+			return this;
+		}
+
 		public Builder address(String address) {
 			this.address = address;
 			return this;
@@ -78,7 +97,23 @@ public class PersonWithBuilder implements Person {
 			return this;
 		}
 		
+		private <T> void verifyMandatory(String fieldName, T fieldValue, Function<T, Boolean> verifier) {
+			if (!verifier.apply(fieldValue)) {
+				throw new BuilderException(String.format("Mandatory field [%s] is missing", fieldName));
+			}
+		}
+		
+		private Function<String, Boolean> validString = new Function<String, Boolean>() {
+			
+			@Override
+			public Boolean apply(String t) {
+				return t != null && t.length() > 0;
+			}
+		};
+		
 		public PersonWithBuilder build() {
+			verifyMandatory("firstName", firstName, validString);
+			verifyMandatory("familyName", familyName, validString);
 			return new PersonWithBuilder(this);
 		}
 	}

@@ -56,5 +56,4 @@ public class PersonWithoutBuilder implements Person {
 	public String getNickName() {
 		return nickName;
 	}
-
 }
